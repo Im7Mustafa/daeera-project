@@ -26,17 +26,48 @@
         <div class="nav-container">
             <div class="logo-container">
                 <i class="fa-solid fa-leaf logo-icon"></i>
-                <span class="logo-text">دائرة</span>
+                <span class="logo-text" data-i18n="logo-title">دائرة</span>
                 <span class="logo-divider"></span>
-                <span class="logo-subtitle">Da'ira</span>
+                <span class="logo-subtitle" data-i18n="logo-subtitle">Da'ira</span>
             </div>
-            <div class="nav-points">
-                <span class="points-badge">
-                    <i class="fa-solid fa-seedling points-icon"></i>
-                    <span>نقاطك: </span>
-                    <strong id="points-display-navbar">0</strong>
-                    <span>نقطة</span>
-                </span>
+            <div class="nav-actions">
+                <div class="nav-points">
+                    <span class="points-badge">
+                        <i class="fa-solid fa-seedling points-icon"></i>
+                        <span data-i18n="points-label">نقاطك: </span>
+                        <strong id="points-display-navbar">0</strong>
+                        <span data-i18n="points-unit">نقطة</span>
+                    </span>
+                </div>
+                <div class="settings-wrapper">
+                    <button id="settings-toggle-btn" class="settings-btn" aria-label="Settings" title="الإعدادات">
+                        <i class="fa-solid fa-gear"></i>
+                    </button>
+                    <div id="settings-dropdown" class="settings-dropdown hidden">
+                        <div class="dropdown-header" data-i18n="settings-title">الإعدادات</div>
+                        <div class="dropdown-section">
+                            <label class="dropdown-section-title" data-i18n="lang-section-title">اللغة</label>
+                            <ul class="lang-list">
+                                <li class="lang-item active" id="lang-ar-item">
+                                    <span class="lang-name">العربية (AR)</span>
+                                    <i class="fa-solid fa-check check-icon"></i>
+                                </li>
+                                <li class="lang-item" id="lang-en-item">
+                                    <span class="lang-name">English (EN)</span>
+                                    <i class="fa-solid fa-check check-icon"></i>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <div class="dropdown-section theme-section">
+                            <span class="theme-label" data-i18n="theme-toggle-label">المظهر الداكن</span>
+                            <label class="switch">
+                                <input type="checkbox" id="theme-dark-checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
@@ -45,12 +76,12 @@
         <!-- Hero Section -->
         <header class="hero-section">
             <div class="hero-content">
-                <div class="hero-badge"><i class="fa-solid fa-recycle"></i> بيئة مستدامة ومستقبل أنظف</div>
-                <h1 class="hero-title">أهلاً بك في <span>دائرة</span></h1>
-                <p class="hero-subtitle">
+                <div class="hero-badge" data-i18n="hero-badge"><i class="fa-solid fa-recycle"></i> بيئة مستدامة ومستقبل أنظف</div>
+                <h1 class="hero-title" data-i18n="hero-title">أهلاً بك في <span>دائرة</span></h1>
+                <p class="hero-subtitle" data-i18n="hero-subtitle">
                     أغلق الدائرة وساهم في حماية البيئة. نقوم بتصنيف النفايات باستخدام الذكاء الاصطناعي لمساعدتك على التدوير بشكل صحيح ومكافأتك بالنقاط.
                 </p>
-                <button id="btn-start-scan" class="btn btn-primary btn-lg pulse-animation">
+                <button id="btn-start-scan" class="btn btn-primary btn-lg pulse-animation" data-i18n="btn-start-scan">
                     ابدأ الفرز <i class="fa-solid fa-arrow-down-long"></i>
                 </button>
             </div>
@@ -61,16 +92,16 @@
             <!-- Left Side: Interactive Scanner Card -->
             <section class="card scanner-card">
                 <div class="card-header">
-                    <h2><i class="fa-solid fa-camera-retro"></i> ماسح الذكاء الاصطناعي</h2>
-                    <p class="card-subtitle">التقط صورة للنفايات أو ارفعها لتصنيفها فوراً</p>
+                    <h2 data-i18n="scanner-header"><i class="fa-solid fa-camera-retro"></i> ماسح الذكاء الاصطناعي</h2>
+                    <p class="card-subtitle" data-i18n="scanner-subtitle">التقط صورة للنفايات أو ارفعها لتصنيفها فوراً</p>
                 </div>
 
                 <!-- Mode Toggle Tabs -->
                 <div class="mode-tabs">
-                    <button id="btn-camera-mode" class="tab-btn active" onclick="switchMode('camera')">
+                    <button id="btn-camera-mode" class="tab-btn active" onclick="switchMode('camera')" data-i18n="tab-camera">
                         <i class="fa-solid fa-video"></i> الكاميرا الحية
                     </button>
-                    <button id="btn-upload-mode" class="tab-btn" onclick="switchMode('upload')">
+                    <button id="btn-upload-mode" class="tab-btn" onclick="switchMode('upload')" data-i18n="tab-upload">
                         <i class="fa-solid fa-file-arrow-up"></i> رفع صورة
                     </button>
                 </div>
@@ -81,12 +112,12 @@
                         <video id="webcam" autoplay playsinline class="video-preview"></video>
                         <div id="camera-loading" class="camera-status-overlay">
                             <i class="fa-solid fa-spinner fa-spin status-icon"></i>
-                            <p>جاري تشغيل الكاميرا...</p>
+                            <p data-i18n="camera-loading">جاري تشغيل الكاميرا...</p>
                         </div>
                         <div id="camera-fallback" class="camera-status-overlay hidden">
                             <i class="fa-solid fa-triangle-exclamation status-icon warning"></i>
-                            <p>صلاحية الوصول إلى الكاميرا مرفوضة أو غير متوفرة</p>
-                            <button class="btn btn-secondary btn-sm" onclick="switchMode('upload')">
+                            <p data-i18n="camera-fallback-text">صلاحية الوصول إلى الكاميرا مرفوضة أو غير متوفرة</p>
+                            <button class="btn btn-secondary btn-sm" onclick="switchMode('upload')" data-i18n="btn-fallback-upload">
                                 التحويل إلى وضع الرفع
                             </button>
                         </div>
@@ -99,7 +130,7 @@
                     </div>
                     
                     <div class="controls-group">
-                        <button id="btn-capture" class="btn btn-primary btn-block">
+                        <button id="btn-capture" class="btn btn-primary btn-block" data-i18n="btn-capture">
                             <i class="fa-solid fa-circle-dot"></i> التقاط وتصنيف النفايات
                         </button>
                     </div>
@@ -109,22 +140,22 @@
                 <div id="upload-container" class="scanner-view-wrapper hidden">
                     <div id="drop-zone" class="drop-zone-frame">
                         <i class="fa-solid fa-cloud-arrow-up drop-icon"></i>
-                        <p class="drop-title">اسحب وأسقط الصورة هنا</p>
-                        <p class="drop-subtitle">يدعم صيغ JPG، PNG أو WEBP (بحد أقصى 5 ميجابايت)</p>
-                        <span class="drop-divider">أو</span>
-                        <label for="file-input" class="btn btn-secondary btn-sm">تصفح الملفات</label>
+                        <p class="drop-title" data-i18n="drop-title">اسحب وأسقط الصورة هنا</p>
+                        <p class="drop-subtitle" data-i18n="drop-subtitle">يدعم صيغ JPG، PNG أو WEBP (بحد أقصى 5 ميجابايت)</p>
+                        <span class="drop-divider" data-i18n="drop-divider">أو</span>
+                        <label for="file-input" class="btn btn-secondary btn-sm" data-i18n="btn-browse">تصفح الملفات</label>
                         <input type="file" id="file-input" accept="image/*" class="hidden">
                     </div>
                     
                     <div id="preview-container" class="preview-frame hidden">
-                        <img id="image-preview" src="#" alt="معاينة الصورة المرفوعة">
+                        <img id="image-preview" src="#" alt="معاينة الصورة المرفوعة" data-i18n-alt="img-preview-alt">
                         <button id="btn-remove-file" class="btn-close" onclick="resetUpload()">
                             <i class="fa-solid fa-xmark"></i>
                         </button>
                     </div>
                     
                     <div class="controls-group">
-                        <button id="btn-upload-classify" class="btn btn-primary btn-block" disabled>
+                        <button id="btn-upload-classify" class="btn btn-primary btn-block" disabled data-i18n="btn-upload-classify">
                             <i class="fa-solid fa-magnifying-glass"></i> تصنيف العنصر المرفوع
                         </button>
                     </div>
@@ -141,8 +172,8 @@
                     <div class="idle-graphic">
                         <i class="fa-solid fa-circle-nodes eco-pulse"></i>
                     </div>
-                    <h3>جاهز للتصنيف</h3>
-                    <p>وجه الكاميرا نحو المادة وانقر على التقاط، أو ارفع صورة للتحقق من قابليتها لإعادة التدوير وكسب النقاط.</p>
+                    <h3 data-i18n="results-idle-title">جاهز للتصنيف</h3>
+                    <p data-i18n="results-idle-desc">وجه الكاميرا نحو المادة وانقر على التقاط، أو ارفع صورة للتحقق من قابليتها لإعادة التدوير وكسب النقاط.</p>
                 </div>
 
                 <!-- Loading State: Classification processing -->
@@ -151,8 +182,8 @@
                         <div class="double-bounce1"></div>
                         <div class="double-bounce2"></div>
                     </div>
-                    <h3>جاري تحليل العنصر...</h3>
-                    <p>تشغيل نموذج تصنيف Da'ira الذكي لاستخراج النتائج البيئية...</p>
+                    <h3 data-i18n="results-loading-title">جاري تحليل العنصر...</h3>
+                    <p data-i18n="results-loading-desc">تشغيل نموذج تصنيف Da'ira الذكي لاستخراج النتائج البيئية...</p>
                 </div>
 
                 <!-- Active State: Displays predictions -->
@@ -165,7 +196,7 @@
 
                     <div class="confidence-section">
                         <div class="confidence-labels">
-                            <span>دقة التصنيف للنموذج</span>
+                            <span data-i18n="confidence-label">دقة التصنيف للنموذج</span>
                             <span id="confidence-percentage">92%</span>
                         </div>
                         <div class="progress-track">
@@ -174,14 +205,14 @@
                     </div>
 
                     <div class="info-block info-description">
-                        <div class="block-title">
+                        <div class="block-title" data-i18n="info-desc-title">
                             <i class="fa-solid fa-circle-info"></i> إرشادات التخلص البيئي
                         </div>
                         <p id="result-description">يرجى إفراغ العبوة تماماً وشطفها بالماء قبل التخلص منها لضمان سهولة إعادة تدويرها.</p>
                     </div>
 
                     <div class="info-block info-savings">
-                        <div class="block-title">
+                        <div class="block-title" data-i18n="info-savings-title">
                             <i class="fa-solid fa-seedling"></i> حقائق الأثر البيئي
                         </div>
                         <p id="result-savings">إعادة تدوير هذا العنصر يوفر قدراً كبيراً من الطاقة مقارنة بإنتاجه من المواد الخام.</p>
@@ -191,14 +222,14 @@
                     <div id="confirm-drop-container" class="hidden">
                         <div class="sensor-simulation-alert">
                             <i class="fa-solid fa-microchip"></i>
-                            <span>تأكيد الإيداع في السلة لكسب النقاط المحلية.</span>
+                            <span data-i18n="confirm-drop-alert">تأكيد الإيداع في السلة لكسب النقاط المحلية.</span>
                         </div>
-                        <button id="btn-confirm-drop" class="btn btn-primary btn-block mb-3">
+                        <button id="btn-confirm-drop" class="btn btn-primary btn-block mb-3" data-i18n="btn-confirm-drop">
                             <i class="fa-solid fa-square-check"></i> تأكيد إيداع النفايات
                         </button>
                     </div>
 
-                    <button class="btn btn-outline-primary btn-block" onclick="resetResults()">
+                    <button class="btn btn-outline-primary btn-block" onclick="resetResults()" data-i18n="btn-scan-another">
                         <i class="fa-solid fa-rotate-left"></i> تصنيف عنصر آخر
                     </button>
                 </div>
